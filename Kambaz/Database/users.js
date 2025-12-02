@@ -1,0 +1,43 @@
+export default [
+  {
+    _id: "001",
+    username: "alice",
+    password: "alice123",
+    firstName: "Alice",
+    lastName: "Johnson",
+    email: "alice@example.com",
+    dob: "1995-05-15",
+    role: "STUDENT",
+  },
+  {
+    _id: "002",
+    username: "bob",
+    password: "bob123",
+    firstName: "Bob",
+    lastName: "Smith",
+    email: "bob@example.com",
+    dob: "1992-08-22",
+    role: "FACULTY",
+  },
+  {
+    _id: "003",
+    username: "charlie",
+    password: "charlie123",
+    firstName: "Charlie",
+    lastName: "Brown",
+    email: "charlie@example.com",
+    dob: "1998-03-10",
+    role: "STUDENT",
+  },
+  {
+    _id: "004",
+    username: "admin",
+    password: "admin123",
+    firstName: "Admin",
+    lastName: "User",
+    email: "admin@example.com",
+    dob: "1985-01-01",
+    role: "ADMIN",
+  },
+];
+
