@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import session from "express-session";
-import mongoose from "mongoose";
+//import mongoose from "mongoose";
 import Hello from "./Hello.js";
 import Lab5 from "./Lab5/index.js";
 import db from "./Kambaz/Database/index.js";
@@ -11,9 +11,9 @@ import CourseRoutes from "./Kambaz/Courses/routes.js";
 import ModuleRoutes from "./Kambaz/Modules/routes.js";
 import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 
-const CONNECTION_STRING =
-  process.env.DATABASE_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz";
-mongoose.connect(CONNECTION_STRING);
+//const CONNECTION_STRING =
+//  process.env.DATABASE_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz";
+//mongoose.connect(CONNECTION_STRING);
 
 const app = express();
 
