@@ -4,8 +4,13 @@ export default function UserRoutes(app, db) {
   const dao = UsersDao(db);
 
   const createUser = (req, res) => {
-    const user = dao.createUser(req.body);
-    res.json(user);
+    try {
+      const user = dao.createUser(req.body);
+      res.json(user);
+    } catch (error) {
+      console.error("Error creating user:", error);
+      res.status(500).json({ message: error.message });
+    }
   };
 
   const deleteUser = (req, res) => {
@@ -14,19 +19,24 @@ export default function UserRoutes(app, db) {
   };
 
   const findAllUsers = (req, res) => {
-    const { role, name } = req.query;
-    if (role) {
-      const users = dao.findUsersByRole(role);
+    try {
+      const { role, name } = req.query;
+      if (role) {
+        const users = dao.findUsersByRole(role);
+        res.json(users);
+        return;
+      }
+      if (name) {
+        const users = dao.findUsersByPartialName(name);
+        res.json(users);
+        return;
+      }
+      const users = dao.findAllUsers();
       res.json(users);
-      return;
+    } catch (error) {
+      console.error("Error finding users:", error);
+      res.status(500).json({ message: error.message });
     }
-    if (name) {
-      const users = dao.findUsersByPartialName(name);
-      res.json(users);
-      return;
-    }
-    const users = dao.findAllUsers();
-    res.json(users);
   };
 
   const findUserById = (req, res) => {
@@ -57,13 +67,18 @@ export default function UserRoutes(app, db) {
   };
 
   const signin = (req, res) => {
-    const { username, password } = req.body;
-    const currentUser = dao.findUserByCredentials(username, password);
-    if (currentUser) {
-      req.session["currentUser"] = currentUser;
-      res.json(currentUser);
-    } else {
-      res.status(401).json({ message: "Unable to login. Try again later." });
+    try {
+      const { username, password } = req.body;
+      const currentUser = dao.findUserByCredentials(username, password);
+      if (currentUser) {
+        req.session["currentUser"] = currentUser;
+        res.json(currentUser);
+      } else {
+        res.status(401).json({ message: "Unable to login. Try again later." });
+      }
+    } catch (error) {
+      console.error("Error signing in:", error);
+      res.status(500).json({ message: error.message });
     }
   };
 

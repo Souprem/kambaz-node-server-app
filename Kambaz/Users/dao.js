@@ -1,7 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
 
 export default function UsersDao(db) {
-  let { users } = db;
+  if (!db || !db.users) {
+    throw new Error("Database not initialized. db.users is undefined");
+  }
   
   const createUser = (user) => {
     const newUser = { ...user, _id: uuidv4() };
