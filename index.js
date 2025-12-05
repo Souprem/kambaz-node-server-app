@@ -11,6 +11,11 @@ import CourseRoutes from "./Kambaz/Courses/routes.js";
 import ModuleRoutes from "./Kambaz/Modules/routes.js";
 import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 
+// Verify database is loaded correctly
+console.log("Database loaded:", db ? "YES" : "NO");
+console.log("Database keys:", db ? Object.keys(db) : "N/A");
+console.log("Users count:", db?.users?.length || 0);
+
 //const CONNECTION_STRING =
 //  process.env.DATABASE_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz";
 //mongoose.connect(CONNECTION_STRING);
